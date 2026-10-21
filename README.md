@@ -135,44 +135,38 @@ I labelled the first 20 posts cold without external assistance or tools to calib
 
 ## The Training Run
 
-<!-- Your starting model, your settings, and anything you changed and why. -->
+**Base model:** `distilbert-base-uncased`
 
-**Base model:**
-
-**Settings:** <!-- epochs, learning rate, batch size, seed -->
+**Settings:** 3 epochs, learning rate 2e-5, per-device batch size 16, max token length 128, seed 42.
 
 **Anything I changed from the defaults, and why:**
+I kept the recommended defaults. A learning rate of 2e-5 and batch size of 16 are well-tested hyperparameter defaults for fine-tuning DistilBERT on smaller text classification datasets, preventing catastrophic forgetting while converging smoothly across 3 epochs. The 128 max token length comfortably accommodates full Reddit posts without incurring unnecessary compute or memory overhead.
 
-**Split sizes:** <!-- train / val / test, and per-label counts in the test
-split. If a label had fewer than about 8 in test, say so — it explains a lot
-of next unit's variance. -->
+**Split sizes:**
+- **Train:** 140 posts (70%) — `analysis`: 49, `hot_take`: 48, `reaction`: 43
+- **Validation:** 30 posts (15%) — `analysis`: 10, `hot_take`: 10, `reaction`: 10
+- **Test:** 30 posts (15%) — `analysis`: 11, `hot_take`: 10, `reaction`: 9
 
-
+All classes in the test split have at least 9 examples, clearing the 8-example threshold without any thin classes.
 
 ---
 
 ## How I Used AI
 
-<!-- Two specific moments — what you asked, what came back, what you changed.
-
-     ⚠️ Plus disclosure of any pre-labelling. If you had a model pre-label a
-     batch and then read and corrected every one, say that. It's an allowed
-     workflow and disclosing it costs you nothing. Not disclosing it is the
-     problem. -->
-
 **Moment 1**
 
-- *What I asked for:*
-- *What came back:*
-- *What I changed:*
+- *What I asked for:* I asked an AI model to generate 8 edge-case posts that sit directly on the boundaries between `analysis` and `hot_take`, and between `hot_take` and `reaction`.
+- *What came back:* It produced posts that used aggressive, opinionated slang alongside specific factual scene details (e.g., claiming a movie "grinds to a halt" but citing "35 minutes of exposition at the farmhouse").
+- *What I changed:* Seeing these edge cases revealed that relying on tone (calm vs. heated) would lead to inconsistent labeling. I tightened my hardest boundary rule to state that if checkable, specific evidence or scene details are cited, the post is `analysis` regardless of how heated or hyperbolic the tone is.
 
 **Moment 2**
 
-- *What I asked for:*
-- *What came back:*
-- *What I changed:*
+- *What I asked for:* I supplied my finalized taxonomy definitions and asked an AI tool to generate a pre-labelled candidate batch for the remaining 180 posts.
+- *What came back:* The model occasionally misclassified purely visceral emotional posts that happened to name an actor, cue, or setting (e.g. "got goosebumps during the brass fanfare in the opening crawl") as `analysis`.
+- *What I changed:* I manually reviewed and corrected those instances to `reaction`, establishing that merely referencing a soundtrack instrument or actor's name does not make a visceral, emotional reaction an analytical argument.
 
 **Pre-labelling disclosure:**
+The first 20 rows of `labels.csv` were labelled completely cold and unaided (marked `cold` in the `note` column). The remaining 180 rows were pre-labelled with AI assistance using the written definitions and decision rules, followed by full manual inspection, verification, and correction of every single row (marked `pre-labelled, checked` in the `note` column).
 
 <!-- ═══════════════════════ UNIT 6 — THE TEST ═══════════════════════
 
