@@ -93,48 +93,43 @@ If the post points to a specific, checkable element of the film or its productio
 
 ## The Dataset
 
-<!-- Where you collected from, how you labelled, your counts, and three hard
-     cases. -->
-
 **Where the posts came from:**
+Public discussion threads, post-viewing reactions, and film analysis commentary from `r/movies`.
 
-**How I labelled them:** <!-- Cold first? Pre-labelled with AI and corrected?
-Say so plainly — the disclosure is required, not penalised. -->
+**How I labelled them:**
+I labelled the first 20 posts cold without external assistance or tools to calibrate taxonomy boundaries. The remaining 180 posts were pre-labelled with AI assistance based on the strict taxonomy definitions and boundary decision rules, followed by individual manual inspection, review, and corrections.
 
 **Counts per label:**
 
 | Label | Count | Share |
 |---|---|---|
-|  |  |  |
-|  |  |  |
-|  |  |  |
-| **Total** |  | 100% |
+| `analysis` | 70 | 35.0% |
+| `hot_take` | 68 | 34.0% |
+| `reaction` | 62 | 31.0% |
+| **Total** | 200 | 100% |
 
 **Three hard cases**
 
-<!-- Any post that made you pause: what it was, which two labels it could have
-     been, and what you chose. These are worth more than the easy 190. -->
-
 **1.**
-> *The post:*
+> *The post:* "The second act completely grinds to a halt once they reach the farmhouse because there's 35 straight minutes of exposition before any conflict resumes."
 >
-> *Could have been:*
+> *Could have been:* `hot_take` or `analysis`
 >
-> *I chose, because:*
+> *I chose, because:* Chose `analysis` because even though the qualitative remark "grinds to a halt" sounds like an unhedged opinion, the poster grounds their critique in a specific, checkable narrative structure (35 minutes of exposition at the farmhouse setting).
 
 **2.**
-> *The post:*
+> *The post:* "That ending of The Mist left me staring at the screen in pure shock, my jaw was literally on the floor for ten minutes."
 >
-> *Could have been:*
+> *Could have been:* `hot_take` or `reaction`
 >
-> *I chose, because:*
+> *I chose, because:* Chose `reaction` because the core of the post describes the viewer's physical shock ("jaw was literally on the floor") and lingering emotional disorientation rather than an argument about cinematic quality.
 
 **3.**
-> *The post:*
+> *The post:* "I got absolute goosebumps when the brass section kicked in during the Star Wars main title crawl."
 >
-> *Could have been:*
+> *Could have been:* `analysis` or `reaction`
 >
-> *I chose, because:*
+> *I chose, because:* Chose `reaction` because although it names a concrete musical element (brass section in main crawl), the communicative function is an immediate physical sensation ("got absolute goosebumps") rather than music theory or thematic analysis.
 
 ---
 
