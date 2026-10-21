@@ -39,10 +39,12 @@
 
 ## What This Does
 
-<!-- Your community, and what your classifier sorts posts into. Three or four
-     sentences. -->
+This project classifies public movie discussion posts from the `r/movies` community into distinct categories based on substance, evidence, and communicative tone. Posts on `r/movies` range from detailed filmmaking critiques to impulsive emotional outbursts and unhedged hot takes. The classifier sorts these posts into three functional categories: `analysis` (arguments backed by specific scenes, craft techniques, or checkable facts), `hot_take` (bold, unhedged claims or predictions with no supporting evidence), and `reaction` (immediate affective or emotional responses to viewing a movie or trailer).
 
-
+### Candidate Distinctions Observed (from reading posts):
+1. **Specific craft / scene citation vs. general assertion**: Some posts specifically cite scenes, director choices, cinematography, or box office statistics; others offer sweeping claims without citing any specific element of the work.
+2. **Unhedged superlative claims without justification**: Posts stating definitive value judgments ("this is the worst film of the decade", "unwatchable", "instant masterpiece") with zero supporting rationale.
+3. **First-person affective response vs. critique of the work**: Posts describing the viewer's immediate physical or emotional state ("I was crying the entire third act", "got chills when the score dropped") rather than evaluating the craftsmanship of the film.
 
 ---
 
