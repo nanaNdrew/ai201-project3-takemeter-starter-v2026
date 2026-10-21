@@ -51,61 +51,48 @@ whether you hit them:
 
 ---
 
-## 1.
+## 1. Overall Accuracy
 
-<!-- Your criterion. It must name a number. -->
-
-
+Overall accuracy on the held-out test split is at least **0.65** across all three seeds.
 
 **Why this target:**
-
-
+With three balanced classes, random chance is approximately 33.3%, and a simple majority baseline would yield around 35–45%. A target of 0.65 requires the model to correctly classify nearly two-thirds of held-out community posts despite the noise and conversational informality of `r/movies`, establishing a clear and defensible margin over naive guessing.
 
 ---
 
-## 2.
+## 2. Per-Label Performance
 
-<!-- Your criterion. -->
-
-
+Each individual label (`analysis`, `hot_take`, `reaction`) achieves an F1 score of at least **0.55** on the held-out test split across all three seeds.
 
 **Why this target:**
-
-
+With a 200-post dataset and a 15% test split (30 posts total), an individual class will only have about 8 to 12 evaluation examples per split. Because the boundary between nuanced `analysis` and unbacked `hot_take` is challenging, a floor of 0.55 guarantees that the model does not completely collapse or abandon predicting any single label while accounting for test-split variance across seeds.
 
 ---
 
-## 3.
+## 3. Label Balance
 
-<!-- Your criterion. -->
-
-
+No single label accounts for more than **50%** (100 posts) of the 200 collected posts, and each label represents at least **20%** (40 posts).
 
 **Why this target:**
-
-
+Severe class imbalance biases transformer fine-tuning toward majority-class frequency prediction, degrading minority recall. Constraining all three labels between 20% and 50% ensures that even the smallest class has at least 28 examples in the 70% training split (140 posts total), providing sufficient signal to learn distinguishing lexical features.
 
 ---
 
-## 4.
+## 4. Consistency / Agreement
 
-<!-- Your criterion. -->
-
-
+Raw agreement on the 30 shared calibration posts against the reference staff labels (evaluated with `agreement.py`) is at least **0.70** (at least 21 out of 30 matching).
 
 **Why this target:**
-
-
+Annotating forum commentary is inherently subjective, but an agreement rate below 70% signals that label definitions and boundary decision rules are too vague to yield a reliable training ground truth. A 70% match demonstrates that our written decision rule (identifying specific checkable facts vs. unsubstantiated assertions) is reproducible across different human annotators.
 
 ---
 
-## 5.
+## 5. Confidence Calibration
 
-<!-- Your criterion. -->
-
-
+In `results.json`, `accuracy_most_confident_third` is at least **0.15** higher than `accuracy_least_confident_third`.
 
 **Why this target:**
+A reliable classifier should know when it is unsure rather than outputting arbitrary high confidence across errors. Demanding a minimum 15-percentage-point accuracy advantage for the top-confidence third over the bottom-confidence third ensures that softmax prediction probabilities can be practically leveraged to auto-triage clear posts and route ambiguous cases to human review.
 
 
 
