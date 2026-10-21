@@ -50,39 +50,42 @@ This project classifies public movie discussion posts from the `r/movies` commun
 
 ## Label Taxonomy
 
-<!-- Each label: a one-sentence definition and two real examples from your
-     reading. Then your decision rule for the hardest boundary.
+### `analysis`
 
-     The decision rule is worth a point on its own and it's the thing most
-     people leave out. Every taxonomy has a hardest boundary. Name yours. -->
-
-### `label_one`
-
-**Definition:**
+**Definition:** Makes an argument about a film's quality, craft, or commercial performance backed by a specific, checkable fact (such as a scene reference, technical technique, box office figure, or quote).
 
 **Example 1:**
->
+> The long unbroken take during the stairway shootout in John Wick 4 works because the camera slowly pulls up to an overhead god's-eye perspective, letting the audience track the spatial geography and muzzle flashes without rapid cuts.
 
 **Example 2:**
->
+> Furiosa underperformed at the domestic box office not because of reception, but because its $168M production budget required a $350M+ break-even point in an R-rated Memorial Day window where overall theatrical attendance was down 30% from 2019.
 
-### `label_two`
+### `hot_take`
 
-**Definition:**
+**Definition:** A confident, sweeping claim or prediction about a movie, franchise, or filmmaker with no supporting evidence or justification offered.
 
 **Example 1:**
->
+> Christopher Nolan has completely forgotten how to write compelling human dialogue and Oppenheimer is going to age worse than Tenet.
 
 **Example 2:**
->
+> CGI peaked in 2006 with Pirates of the Caribbean: Dead Man's Chest and every single blockbuster made since looks like a cheap video game cutscene.
+
+### `reaction`
+
+**Definition:** An immediate, visceral response describing personal emotional feelings, physical sensations, or mood from seeing a film or trailer.
+
+**Example 1:**
+> Just walked out of the theater after seeing Dune 2 and my hands are literally shaking, that sound design in IMAX had my entire chest vibrating for two hours.
+
+**Example 2:**
+> I was crying like a baby during the last ten minutes of The Wild Robot, wasn't expecting an animated movie to hit me in the feelings this hard.
 
 ### The hardest boundary
 
-**Which two labels:**
+**Which two labels:** `analysis` and `hot_take`
 
 **The decision rule I used every time:**
-<!-- e.g. "If the post names a specific checkable fact, it's `analysis`, even
-     if the tone is heated." -->
+If the post points to a specific, checkable element of the film or its production (such as a named scene, a technical filmmaking choice, a dialogue quote, or a box office statistic) to substantiate its claim, it is `analysis`—even if the tone is aggressive, hyperbolic, or opinionated. If it only asserts a judgment or prediction without pointing to any verifiable detail or scene, it is `hot_take`.
 
 
 
