@@ -257,7 +257,10 @@ In Seed 42's test split the model achieved 0 off-diagonal mistakes; across all 9
 **Diagnoses**
 
 - **Criterion 5 (Confidence Separation) — MISSED:**
-  The target of a 0.15 separation between the most-confident third and least-confident third was missed due to a ceiling effect on model accuracy. Because the fine-tuned model achieved 100% accuracy on Seeds 42 and 7 and 96.7% on Seed 2024, even the least-confident third achieved 90% to 100% accuracy on held-out test splits. A 0.15 advantage is mathematically impossible when least-confident accuracy is 0.90 or 1.00 (since the ceiling is 1.00). When errors did occur (Seed 2024), the model was genuinely less confident (mean probability 0.364 when wrong vs. 0.441 when right), confirming directional calibration, but the high performance compressed the spread.
+  - *Observed:* Separation was 0.000 on Seed 42 (1.000 vs 1.000), 0.000 on Seed 7 (1.000 vs 1.000), and 0.100 on Seed 2024 (1.000 vs 0.900), failing to reach the >= 0.15 threshold across all trials.
+  - *Evidence from Agreement Report:* In Milestone 4, the agreement check achieved 100% agreement (30/30) against the staff reference set. This confirms that the taxonomy definitions and decision rules (particularly Rule 1 on load-bearing facts and Rule 2 on general claims vs. personal reports) were applied consistently without labeling drift or ground-truth noise. The miss is therefore a property of the model's prediction distribution, not a labeling inconsistency.
+  - *Evidence from Confusion Matrix:* Across all 90 evaluations across the three seeds (30 posts per seed), the model made 89 correct predictions and only a single mistake (1 real `analysis` post predicted as `reaction` on Seed 2024).
+  - *Root Cause Diagnosis:* The failure to achieve a 0.15 separation is an accuracy ceiling effect. Because the fine-tuned model achieved 96.7% to 100% overall accuracy, even its least-confident third answered 90% to 100% of held-out examples correctly. A 0.15 margin is mathematically impossible when the lower third scores 0.90 or 1.00 (since top-third accuracy cannot exceed 1.00). Directionally, the model's confidence was well-calibrated—on Seed 2024, its mean confidence when wrong (0.364) was lower than when right (0.441)—but the near-absence of misclassifications compressed the accuracy spread between the thirds.
 
 
 
