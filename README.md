@@ -207,27 +207,22 @@ Fine-tuning delivered a substantial performance improvement over zero-shot promp
 
 | Criterion | Target | Seed 42 | Seed 7 | Seed 2024 | Verdict |
 |---|---|---|---|---|---|
-| 1.  |  |  |  |  |  |
-| 2.  |  |  |  |  |  |
-| 3.  |  |  |  |  |  |
-| 4.  |  |  |  |  |  |
-| 5.  |  |  |  |  |  |
+| 1. Overall accuracy | >= 0.65 | 1.000 | 1.000 | 0.967 | MET |
+| 2. Per-label F1 floor | >= 0.55 | 1.000 | 1.000 | 0.947 | MET |
+| 3. Label balance (max/min) | 20% - 50% | 35% / 31% | 35% / 31% | 35% / 31% | MET |
+| 4. Calibration agreement | >= 0.70 | (eval in M4) | (eval in M4) | (eval in M4) | PENDING |
+| 5. Confidence separation | >= 0.15 | 0.000 | 0.000 | 0.100 | MISSED |
 
 ### Confusion matrix
 
-<!-- ⚠️ TYPED AS A MARKDOWN TABLE. The notebook prints one ready to paste.
-     An image of a matrix earns nothing. -->
-
-| true \ predicted |  |  |  |
+| true \ predicted | analysis | hot_take | reaction |
 |---|---|---|---|
-| **** |  |  |  |
-| **** |  |  |  |
-| **** |  |  |  |
+| **analysis** | 11 | 0 | 0 |
+| **hot_take** | 0 | 10 | 0 |
+| **reaction** | 0 | 0 | 9 |
 
 **My biggest off-diagonal number, and what it means:**
-<!-- Not "the model made mistakes" — WHICH boundary it didn't learn, and which
-     direction. "7 real analysis posts were called hot_take and only 3 went the
-     other way" is a direction, not just an error rate. -->
+In Seed 42's test split the model achieved 0 off-diagonal mistakes; across all 90 seed evaluations, the single off-diagonal error was 1 real `analysis` post misclassified as `reaction` in Seed 2024 (and 0 the other way), which occurred because the post analyzed emotional audience reception while citing scene details, causing the model to lean slightly toward the affective label.
 
 
 
@@ -240,22 +235,16 @@ Fine-tuning delivered a substantial performance improvement over zero-shot promp
 
 | # | Criterion | Target | Verdict | How I decided |
 |---|---|---|---|---|
-| 1 |  |  |  |  |
-| 2 |  |  |  |  |
-| 3 |  |  |  |  |
-| 4 |  |  |  |  |
-| 5 |  |  |  |  |
+| 1 | Overall Accuracy | >= 0.65 | MET | Scored 1.000 (Seed 42), 1.000 (Seed 7), and 0.967 (Seed 2024); all three seeds exceeded 0.65. |
+| 2 | Per-Label Performance | >= 0.55 | MET | Lowest F1 across all seeds was 0.947 (reaction on Seed 2024); all others were 0.952 to 1.000. |
+| 3 | Label Balance | 20% - 50% | MET | Labels are balanced: analysis 35.0% (70), hot_take 34.0% (68), reaction 31.0% (62). |
+| 4 | Calibration Agreement | >= 0.70 | PENDING | To be evaluated against reference staff labels upon release in Milestone 4. |
+| 5 | Confidence Calibration | >= 0.15 | MISSED | Separation was 0.000 on Seed 42, 0.000 on Seed 7, and 0.100 on Seed 2024, missing the 0.15 target. |
 
 **Diagnoses**
 
-<!-- For each miss: the cause, and how you know. The four common causes are:
-     too few examples for a label, a boundary you applied inconsistently, a
-     genuinely hard label pair, and a task the model can't reach from this
-     much data.
-
-     ⚠️ Use your agreement report as evidence. It is the only instrument you
-     have that can tell a LABELLING problem from a MODEL problem, and this
-     section is graded on whether you used it that way. -->
+- **Criterion 5 (Confidence Separation) — MISSED:**
+  The target of a 0.15 separation between the most-confident third and least-confident third was missed due to a ceiling effect on model accuracy. Because the fine-tuned model achieved 100% accuracy on Seeds 42 and 7 and 96.7% on Seed 2024, even the least-confident third achieved 90% to 100% accuracy on held-out test splits. A 0.15 advantage is mathematically impossible when least-confident accuracy is 0.90 or 1.00 (since the ceiling is 1.00). When errors did occur (Seed 2024), the model was genuinely less confident (mean probability 0.364 when wrong vs. 0.441 when right), confirming directional calibration, but the high performance compressed the spread.
 
 
 
