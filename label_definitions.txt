@@ -5,6 +5,6 @@
 #
 # Delete the examples below and put yours in.
 
-analysis: Makes an argument about a film's quality, craft, or commercial performance backed by a specific, checkable fact
+analysis: Makes an argument about a film's quality, craft, or commercial performance backed by a specific, checkable fact (such as a scene reference, technical technique, box office figure, or quote)
 hot_take: A confident, sweeping claim or prediction about a movie, franchise, or filmmaker with no supporting evidence or justification offered
 reaction: An immediate, visceral response describing personal emotional feelings, physical sensations, or mood from seeing a film or trailer

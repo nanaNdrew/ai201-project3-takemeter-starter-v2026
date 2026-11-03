@@ -182,18 +182,19 @@ The first 20 rows of `labels.csv` were labelled completely cold and unaided (mar
 
 | Measure | Baseline | Trained | Difference |
 |---|---|---|---|
-| Overall accuracy |  |  |  |
-| Macro F1 |  |  |  |
-| F1 — `label_one` |  |  |  |
-| F1 — `label_two` |  |  |  |
+| Overall accuracy | 0.667 | 1.000 | +0.333 |
+| Macro F1 | 0.599 | 1.000 | +0.401 |
+| F1 — `analysis` | 0.667 | 1.000 | +0.333 |
+| F1 — `hot_take` | 0.182 | 1.000 | +0.818 |
+| F1 — `reaction` | 0.947 | 1.000 | +0.053 |
 
 **What I predicted before I looked:**
-<!-- Milestone 1 asks you to write this BEFORE seeing the trained numbers. A
-     prediction made afterwards isn't one. -->
+I predicted that the fine-tuned model would beat the zero-shot baseline most dramatically on `hot_take` and `analysis`, because zero-shot language models typically struggle to distinguish confident unhedged assertions from factually substantiated critiques without explicit training on our boundary rule requiring checkable scene citations.
 
 **What the gap actually means:**
-<!-- If the baseline matched your trained model, your fine-tuning added
-     nothing — and that is a real finding, not a failure. Say it plainly. -->
+Fine-tuning delivered a substantial performance improvement over zero-shot prompting (+0.333 overall accuracy and +0.401 macro F1). The zero-shot baseline performed well on `reaction` (0.947 F1) because personal emotional and physical affective vocabulary is readily identifiable. However, it struggled severely on `hot_take` (0.182 F1, 0.100 recall), almost always classifying bold, confident claims as `analysis` because both categories share film critique jargon. Fine-tuning on 140 domain-specific examples taught the model our precise boundary rule: requiring checkable scene facts or technical details to qualify as `analysis`.
+
+*Definitions ablation:* Running the baseline with bare label names yielded 0.567 accuracy and 0.524 macro F1 (`analysis` F1 collapsed to 0.167). Providing clear label definitions in `label_definitions.txt` increased baseline accuracy by +10.0 percentage points (to 0.667) and boosted `analysis` F1 from 0.167 to 0.667, demonstrating that definition prompt engineering significantly clarifies label scope, even though fine-tuning is still necessary to master the subtle boundary.
 
 
 

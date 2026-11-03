@@ -1,0 +1,184 @@
+{
+  "model": "facebook/bart-large-mnli",
+  "n": 30,
+  "seed": 42,
+  "held_out": true,
+  "used_definitions": true,
+  "scores": {
+    "n": 30,
+    "accuracy": 0.6666666666666666,
+    "f1_macro": 0.5986177565124934,
+    "per_label": {
+      "analysis": {
+        "precision": 0.5263157894736842,
+        "recall": 0.9090909090909091,
+        "f1": 0.6666666666666666,
+        "support": 11
+      },
+      "hot_take": {
+        "precision": 1.0,
+        "recall": 0.1,
+        "f1": 0.18181818181818182,
+        "support": 10
+      },
+      "reaction": {
+        "precision": 0.9,
+        "recall": 1.0,
+        "f1": 0.9473684210526316,
+        "support": 9
+      }
+    }
+  },
+  "predictions": [
+    {
+      "text": "The color palette in The Matrix transitions between a sickly green tint inside the simulated world and a cold blue hue in the real world aboard the Nebuchadnezzar.",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "The scene with the box at the end of Se7en had my stomach in knots, I felt physically ill anticipation.",
+      "gold": "reaction",
+      "predicted": "reaction"
+    },
+    {
+      "text": "Left the theater after Godzilla Minus One feeling so emotionally drained and simultaneously hyped, what an incredible monster film.",
+      "gold": "reaction",
+      "predicted": "reaction"
+    },
+    {
+      "text": "The blood spray in Kill Bill Vol. 1 was created using Chinese-style pressure canisters filled with red dye to emulate 1970s Shaw Brothers martial arts cinema.",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "In Parasite, Bong Joon-ho uses the descending vertical geometry of stairs to physically map the class divide as the Kim family flees the flooded semi-basement in a rainstorm.",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "The title sequence of Se7en designed by Kyle Cooper used hand-scratched film emulsion and erratic jump cuts to convey John Doe's manic obsession before revealing his identity.",
+      "gold": "analysis",
+      "predicted": "reaction"
+    },
+    {
+      "text": "Inception's ending isn't ambiguous at all; Cobb clearly made it back to his kids in reality.",
+      "gold": "hot_take",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Paul Thomas Anderson is incapable of making a bad movie and There Will Be Blood is the pinnacle of cinema.",
+      "gold": "hot_take",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Alien succeeds as horror because Ridley Scott doesn't show the full adult Xenomorph until over an hour into the film, relying on Jones the cat and motion tracker audio pings to build suspense.",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Blade Runner is undeniably boring to sit through even if the visual atmosphere is influential.",
+      "gold": "hot_take",
+      "predicted": "analysis"
+    },
+    {
+      "text": "I felt so warm and comforted by the end of Am\u00e9lie, like drinking a hot cup of cocoa on a snowy day.",
+      "gold": "reaction",
+      "predicted": "reaction"
+    },
+    {
+      "text": "The sound effects of the Xenomorph clicking in Alien were created by combining bird cries, dolphin clicks, and snake hisses played through a reverb chamber.",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "I felt completely mesmerized and hypnotized by the visuals of 2001: A Space Odyssey on the big screen.",
+      "gold": "reaction",
+      "predicted": "reaction"
+    },
+    {
+      "text": "Just finished Aftersun and I'm staring at my living room ceiling in pitch darkness feeling an overwhelming sense of grief.",
+      "gold": "reaction",
+      "predicted": "reaction"
+    },
+    {
+      "text": "Walking out into the bright afternoon sun after seeing The Batman felt like emerging from a damp cave, completely disoriented.",
+      "gold": "reaction",
+      "predicted": "reaction"
+    },
+    {
+      "text": "Babylon was a misunderstood genius film and people only hated it because they felt attacked by Hollywood decadence.",
+      "gold": "hot_take",
+      "predicted": "analysis"
+    },
+    {
+      "text": "The Academy is hopelessly biased against genre cinema and horror will never get the Best Picture respect it deserves.",
+      "gold": "hot_take",
+      "predicted": "analysis"
+    },
+    {
+      "text": "A24 has turned indie filmmaking into a pretentious aesthetic brand where style matters way more than substance.",
+      "gold": "hot_take",
+      "predicted": "hot_take"
+    },
+    {
+      "text": "Joker was just a cheap, derivative ripoff of Taxi Driver and King of Comedy that got overrated by edgy teenagers.",
+      "gold": "hot_take",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Arrival's non-linear editing mimics the Heptapod language, revealing that Louise's memories of her dying daughter are flash-forwards rather than flashbacks once she learns to perceive time non-linearly.",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Dunkirk utilizes a ticking pocket watch provided by Christopher Nolan as the rhythmic bassline for the score, driving the interlocking 1-week, 1-day, and 1-hour timelines.",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Tom Cruise is the single greatest action star in film history and nobody in Hollywood will ever surpass his stunt work.",
+      "gold": "hot_take",
+      "predicted": "analysis"
+    },
+    {
+      "text": "The sheer joy and adrenaline rush I felt when the credits hit for Spider-Man: Across the Spider-Verse was unmatched.",
+      "gold": "reaction",
+      "predicted": "reaction"
+    },
+    {
+      "text": "In The Grand Budapest Hotel, Wes Anderson changes the aspect ratio three times\u20141.37:1 for the 1930s, 2.35:1 for the 1960s, and 1.85:1 for the 1980s\u2014to reflect each era's dominant film format.",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "The mirror shot in Contact where young Ellie runs up the stairs to grab medicine was created by compositing the running footage onto the reflection of an opening cabinet door.",
+      "gold": "analysis",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Superhero fatigue is 100% real and audiences are permanently moving on to video game adaptations.",
+      "gold": "hot_take",
+      "predicted": "analysis"
+    },
+    {
+      "text": "The feeling of sheer existential dread after watching Melancholia stayed with me for a month.",
+      "gold": "reaction",
+      "predicted": "reaction"
+    },
+    {
+      "text": "I felt an intense wave of claustrophobia during the underwater tube sequence in The Abyss, had to unbutton my collar.",
+      "gold": "reaction",
+      "predicted": "reaction"
+    },
+    {
+      "text": "Guillermo del Toro is a visual genius but an incredibly mediocre screenwriter.",
+      "gold": "hot_take",
+      "predicted": "analysis"
+    },
+    {
+      "text": "Oppenheimer's shift between color for J. Robert Oppenheimer's subjective experience and black-and-white for Lewis Strauss's objective confirmation hearing gives the audience a clear visual anchor for whose perspective is driving the narrative.",
+      "gold": "analysis",
+      "predicted": "analysis"
+    }
+  ]
+}
