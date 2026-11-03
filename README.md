@@ -202,8 +202,21 @@ Fine-tuning delivered a substantial performance improvement over zero-shot promp
 
 ## Run Log — Before
 
-<!-- Five criteria across three seeds. The notebook's section 6 prints the
-     spread table; the Target and Verdict columns are yours. -->
+**Device:** `mps` (Apple Silicon GPU — MPS) | **PyTorch:** 2.14.1
+
+### Spread across three seeds
+
+| Measure | Seed 42 | Seed 7 | Seed 2024 | Spread |
+|---|---|---|---|---|
+| Overall accuracy | 1.000 | 1.000 | 0.967 | 0.033 |
+| Macro F1 | 1.000 | 1.000 | 0.967 | 0.033 |
+| F1 — `analysis` | 1.000 | 1.000 | 0.952 | 0.048 |
+| F1 — `hot_take` | 1.000 | 1.000 | 1.000 | 0.000 |
+| F1 — `reaction` | 1.000 | 1.000 | 0.947 | 0.053 |
+
+*Accuracy moved 0.033 across seeds. Stable enough to trust.*
+
+### Criteria tracking
 
 | Criterion | Target | Seed 42 | Seed 7 | Seed 2024 | Verdict |
 |---|---|---|---|---|---|
