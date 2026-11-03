@@ -317,70 +317,69 @@ Achieving 100% agreement confirms that consistency in labeling depends almost en
 ## The Improvement
 
 **What I changed:**
+Added 30 new, independently verified examples to my thinnest label (`reaction`), bringing its representation from 62 to 92 examples (230 total posts in `labels.csv`, composed of 40.0% `reaction`, 30.4% `analysis`, and 29.6% `hot_take`).
 
 **Which diagnosis pointed at it:**
+In the Before run, `reaction` was our smallest class (62 posts, 31.0%) and exhibited the lowest F1 floor across all seeds (0.947 on Seed 2024, where a scene-analysis post was misclassified as `reaction`). Expanding the thinnest label aimed to provide richer emotional vocabulary, eliminate minority-class sample variance, and test whether increased representation broke the confidence ceiling.
 
 ### Run Log — After
 
 | Criterion | Target | Seed 42 | Seed 7 | Seed 2024 | Verdict |
 |---|---|---|---|---|---|
-| 1.  |  |  |  |  |  |
-| 2.  |  |  |  |  |  |
-| 3.  |  |  |  |  |  |
-| 4.  |  |  |  |  |  |
-| 5.  |  |  |  |  |  |
+| 1. Overall accuracy | >= 0.65 | 0.914 | 0.971 | 0.943 | MET |
+| 2. Per-label F1 floor | >= 0.55 | 0.824 | 0.947 | 0.900 | MET |
+| 3. Label balance (max/min) | 20% - 50% | 40% / 30% | 40% / 30% | 40% / 30% | MET |
+| 4. Calibration agreement | >= 0.70 | 1.000 (30/30) | 1.000 (30/30) | 1.000 (30/30) | MET |
+| 5. Confidence separation | >= 0.15 | 0.273 | 0.091 | 0.091 | MISSED |
 
 **Did it help, and how do I know:**
-
-<!-- If it didn't, say so. Relabelling that didn't help is a genuinely
-     interesting result and earns full credit. -->
-
-
+Comparing the Before and After results yields a nuanced, revealing finding:
+1. **Confidence separation (Criterion 5):** On Seed 42, adding 30 reaction examples successfully broke the accuracy ceiling. The most-confident third scored 1.000 accuracy while the least-confident third scored 0.727—achieving a **0.273 separation** and passing the criterion on that split for the first time. However, on Seeds 7 and 2024, accuracy remained high (0.971 and 0.943), leaving the separation at 0.091, so the criterion remains technically MISSED across all three seeds.
+2. **Overall Accuracy and Spread:** Mean accuracy moved from 0.989 before (1.000, 1.000, 0.967) to 0.943 after (0.914, 0.971, 0.943), with spread widening from 0.033 to 0.057.
+3. **Class Balance Impact:** By enlarging `reaction` from 31% to 40% of the dataset, the model developed a slight prior lean toward `reaction`. In Seed 42's confusion matrix, 3 real `hot_take` posts were called `reaction` (0 in the other direction).
+*Verdict:* It partially helped by creating meaningful calibration variance on Seed 42, but showed that expanding one label to 40% creates a slight prior pull that pulls borderline unhedged opinions into the expanded class.
 
 ---
 
 ## What's Still Broken
 
-<!-- For each criterion still missed: what you'd do, and why you stopped. -->
+**For each criterion still missed: what you'd do, and why you stopped:**
+Criterion 5 (Confidence separation >= 0.15 across all seeds) was met on Seed 42 (0.273) but missed on Seeds 7 (0.091) and 2024 (0.091).
+- *What I would do:* Apply temperature scaling to the logits during inference or add hard contrastive negative pairs specifically targeting the boundary where aggressive `hot_take` language resembles visceral `reaction` language.
+- *Why I stopped:* The course specification mandates testing exactly one isolated improvement between Before and After to measure its unconfounded effect. Layering temperature scaling or hyperparameter changes on top of dataset expansion would invalidate the single-variable comparison.
 
-
-
-**The gap between what I meant my labels to capture and what the model
-learned:**
-<!-- Two sentences. Your confusion matrix is the evidence. -->
-
-
+**The gap between what I meant my labels to capture and what the model learned:**
+I intended `hot_take` to capture sweeping claims about a film's quality and `reaction` to strictly denote first-person physical or emotional sensations. The confusion matrix shows that when `reaction` was expanded, the model latched onto heated, hyperbolic emotional tone as a proxy for `reaction`, occasionally misclassifying aggressively stated opinions as personal reactions.
 
 <!-- ═════════════════════════════════════════════════════════════════════
 
      SUBMISSION CHECKLIST — unit 5
 
-       [ ] criteria.md has five numbered criteria, each naming a NUMBER
-       [ ] Each has a reason underneath tied to your data or taxonomy
-       [ ] labels.csv: at least 150 rows, text/label/note, ONE file not split
-       [ ] No label above 70%
-       [ ] All five unit 5 sections have real content
-       [ ] Label Taxonomy includes the decision rule for your hardest boundary
-       [ ] The Dataset includes three hard cases
-       [ ] results.json and test_split.csv committed (the notebook does this)
-       [ ] At least four new commits
-       [ ] Repository URL submitted — WRITE IT DOWN
+       [x] criteria.md has five numbered criteria, each naming a NUMBER
+       [x] Each has a reason underneath tied to your data or taxonomy
+       [x] labels.csv: at least 150 rows, text/label/note, ONE file not split
+       [x] No label above 70%
+       [x] All five unit 5 sections have real content
+       [x] Label Taxonomy includes the decision rule for your hardest boundary
+       [x] The Dataset includes three hard cases
+       [x] results.json and test_split.csv committed (the notebook does this)
+       [x] At least four new commits
+       [x] Repository URL submitted — WRITE IT DOWN
 
      SUBMISSION CHECKLIST — unit 6
 
-       [ ] Baseline vs. Trained table, with your prediction written beforehand
-       [ ] Run Log — Before, five criteria across three seeds
-       [ ] Confusion matrix TYPED AS A MARKDOWN TABLE
-       [ ] A verdict on every criterion
-       [ ] A diagnosis for every miss, using the agreement report as evidence
-       [ ] Agreement Report with every disagreement adjudicated
-       [ ] One improvement, with Run Log — After
-       [ ] What's Still Broken
-       [ ] results_three_seeds_before.json, results_three_seeds_after.json,
-           baseline_results.json and
-           agreement_results.json committed
-       [ ] At least four new commits
-       [ ] The SAME repository URL as last unit
+       [x] Baseline vs. Trained table, with your prediction written beforehand
+       [x] Run Log — Before, five criteria across three seeds
+       [x] Confusion matrix TYPED AS A MARKDOWN TABLE
+       [x] A verdict on every criterion
+       [x] A diagnosis for every miss, using the agreement report as evidence
+       [x] Agreement Report with every disagreement adjudicated
+       [x] One improvement, with Run Log — After
+       [x] What's Still Broken
+       [x] results_three_seeds_before.json, results_three_seeds_after.json,
+           baseline_results.json and agreement_results.json committed
+       [x] At least four new commits
+       [x] The SAME repository URL as last unit
 
      Do not delete and recreate this repository.
      ═════════════════════════════════════════════════════════════════════ -->
