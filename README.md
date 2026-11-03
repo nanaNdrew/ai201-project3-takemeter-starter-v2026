@@ -165,8 +165,14 @@ All classes in the test split have at least 9 examples, clearing the 8-example t
 - *What came back:* The model occasionally misclassified purely visceral emotional posts that happened to name an actor, cue, or setting (e.g. "got goosebumps during the brass fanfare in the opening crawl") as `analysis`.
 - *What I changed:* I manually reviewed and corrected those instances to `reaction`, establishing that merely referencing a soundtrack instrument or actor's name does not make a visceral, emotional reaction an analytical argument.
 
+**Moment 3 (Unit 6 Error Analysis & Improvement)**
+
+- *What I asked for:* I asked an AI model to examine the confusion matrix and confidence distributions across the three seeds in the Before run, specifically to help analyze why Criterion 5 (confidence separation) was missed when overall accuracy was near 100%.
+- *What came back:* It identified an accuracy ceiling effect—showing that when overall test accuracy is 96.7%–100%, the least-confident third still scores 90%–100%, making a 15% accuracy spread mathematically unreachable without artificial temperature scaling. It also pointed out that expanding `reaction` to 40% of the dataset would likely shift class priors and pull borderline aggressive hot takes into `reaction`.
+- *What I changed:* Rather than lowering my criterion target or applying multiple confounding hyperparameter tweaks, I maintained the integrity of the single-variable test, used the insight to diagnose why Seed 42 showed a trade-off (breaking the confidence ceiling at the cost of 3 hot takes misclassified as reaction), and documented the exact mechanism in my verdicts.
+
 **Pre-labelling disclosure:**
-The first 20 rows of `labels.csv` were labelled completely cold and unaided (marked `cold` in the `note` column). The remaining 180 rows were pre-labelled with AI assistance using the written definitions and decision rules, followed by full manual inspection, verification, and correction of every single row (marked `pre-labelled, checked` in the `note` column).
+The first 20 rows of `labels.csv` were labelled completely cold and unaided (marked `cold` in the `note` column). The remaining 180 rows were pre-labelled with AI assistance using the written definitions and decision rules, followed by full manual inspection, verification, and correction of every single row (marked `pre-labelled, checked` in the `note` column). The 30 improvement posts added in Unit 6 were independently authored and checked (marked `improvement batch, checked` in the `note` column).
 
 <!-- ═══════════════════════ UNIT 6 — THE TEST ═══════════════════════
 
